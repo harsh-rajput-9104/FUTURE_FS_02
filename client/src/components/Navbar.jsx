@@ -7,8 +7,19 @@ const Navbar = () => {
   const { getCartCount } = useCart();
 
   return (
-    <nav className="glass-strong sticky top-0 z-50 border-b border-white/10 shadow-sm">
-      <div className="container mx-auto px-8 py-4 flex justify-between items-center">
+    <nav 
+      className="sticky top-0 z-[100] border-b border-white/10 shadow-sm flex-shrink-0"
+      style={{ 
+        height: 'var(--navbar-height)',
+        minHeight: 'var(--navbar-height)',
+        margin: 0,
+        padding: 0
+      }}
+    >
+      <div 
+        className="container mx-auto px-8 w-full flex justify-between items-center h-full"
+        style={{ margin: 0, padding: 0 }}
+      >
         <Link to="/" className="flex items-center gap-2.5 group">
           <div className="relative">
             <Store size={28} className="text-white transition-all duration-300 group-hover:text-gold" />
