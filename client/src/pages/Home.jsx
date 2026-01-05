@@ -221,7 +221,7 @@ const Home = () => {
       {/* Main Content */}
       <main className="flex-1 w-full min-w-0">
         {/* Filters & Search Header - sticky to top of page */}
-        <div className="glass-strong border-b border-white/10 sticky top-[72px] z-40 backdrop-blur-xl bg-[rgba(10,10,15,0.98)] shadow-lg">
+        <div className="glass-strong border-b border-white/10 sticky top-[72px] z-40 backdrop-blur-xl bg-[rgba(10,10,15,1)] shadow-lg">
           <div className="px-8 py-5 flex flex-col md:flex-row gap-4 items-center justify-between">
           
           {/* Mobile Filter Toggle */}
@@ -262,7 +262,7 @@ const Home = () => {
       </div>
 
         {/* Main Content Area - natural page scroll */}
-        <div className="px-8 py-10">
+        <div className="px-8 py-10 pt-16">
           {isHomeView ? (
               <div className="space-y-20">
                 {/* Featured Carousel Section */}
