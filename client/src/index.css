@@ -1,0 +1,362 @@
+@import "tailwindcss";
+
+/* ========================================
+   FUTURISTIC COLOR SYSTEM & THEME
+   ======================================== */
+:root {
+  /* Primary Colors */
+  --primary: #5B5FFF;
+  --primary-dark: #4347CC;
+  --primary-light: #7679FF;
+  
+  /* Accent Colors */
+  --accent: #00E5FF;
+  --accent-dark: #00B8D4;
+  --accent-light: #33EBFF;
+  
+  /* Premium Golden Accents */
+  --gold: #D4AF37;
+  --gold-muted: #B8965F;
+  --gold-light: #E8C872;
+  --gold-dark: #A08428;
+  
+  /* Background Gradients */
+  --bg-main: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+  --bg-secondary: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+  --bg-card: rgba(255, 255, 255, 0.03);
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  
+  /* Text Colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: #B0B3C6;
+  --text-muted: #6B6E82;
+  
+  /* Glow Effects */
+  --glow-primary: 0 0 20px rgba(91, 95, 255, 0.5);
+  --glow-accent: 0 0 20px rgba(0, 229, 255, 0.5);
+  --glow-soft: 0 4px 24px rgba(91, 95, 255, 0.2);
+  --glow-gold: 0 0 16px rgba(212, 175, 55, 0.3);
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   GLASSMORPHISM UTILITIES
+   ======================================== */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Premium card variant with subtle highlight */
+.glass-card-premium {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================
+   GRADIENT UTILITIES
+   ======================================== */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+}
+
+.gradient-border {
+  position: relative;
+  background: var(--glass-bg);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ========================================
+   GLOW & HOVER EFFECTS
+   ======================================== */
+.glow-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-hover:hover {
+  box-shadow: 0 8px 24px rgba(91, 95, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.glow-accent-hover:hover {
+  box-shadow: 0 8px 24px rgba(0, 229, 255, 0.25);
+}
+
+.border-glow {
+  border: 1px solid rgba(91, 95, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.border-glow:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 16px rgba(91, 95, 255, 0.15);
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* ========================================
+   SCROLLBAR STYLING
+   ======================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(91, 95, 255, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Hide scrollbar for featured section */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================================
+   CUSTOM UTILITIES
+   ======================================== */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card-hover-lift {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(91, 95, 255, 0.2);
+}
+
+/* Image zoom effect */
+.image-zoom-container {
+  overflow: hidden;
+}
+
+.image-zoom {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-zoom-container:hover .image-zoom {
+  transform: scale(1.08);
+}
+
+/* ========================================
+   PREMIUM POLISH UTILITIES
+   ======================================== */
+
+/* Golden accent utilities */
+.text-gold {
+  color: var(--gold);
+}
+
+.text-gold-muted {
+  color: var(--gold-muted);
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+}
+
+.border-gold {
+  border-color: var(--gold-muted);
+}
+
+/* Soft section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+}
+
+/* Premium button micro-interactions */
+.btn-premium {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-premium:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+.btn-premium:active {
+  transform: scale(0.98);
+}
+
+/* Smooth scroll fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-fade-in {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Breathing space utilities */
+.section-spacing {
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+}
+
+.section-spacing-sm {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* Premium hover glow for interactive elements */
+.hover-glow-gold {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.hover-glow-gold:hover {
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Subtle gradient overlay for depth */
+.depth-gradient {
+  position: relative;
+}
+
+.depth-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ========================================
+   FEATURED CAROUSEL - REMOVED
+   (Using simple horizontal scroll instead)
+   ======================================== */
