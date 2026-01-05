@@ -125,7 +125,7 @@ const Home = () => {
     if (scrollWidth <= clientWidth) return;
 
     let animationFrameId;
-    const scrollSpeed = 0.5; // Pixels per frame (slow and smooth)
+    const scrollSpeed = 0.6; // Pixels per frame (slow and smooth)
 
     const animate = () => {
       if (carousel && !isHovering) {
