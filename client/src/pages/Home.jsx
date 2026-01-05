@@ -113,7 +113,7 @@ const Home = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Auto-scroll for featured products
+  // Auto-scroll for featured products - Smooth infinite loop
   useEffect(() => {
     const carousel = carouselRef.current;
     if (!carousel || isHovering) return;
@@ -124,17 +124,33 @@ const Home = () => {
     // Only auto-scroll if there's overflow
     if (scrollWidth <= clientWidth) return;
 
-    const interval = setInterval(() => {
-      if (carousel.scrollLeft >= scrollWidth - clientWidth - 1) {
-        // Smoothly reset to start
-        carousel.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        // Scroll by 1px for smooth continuous motion
-        carousel.scrollLeft += 1;
-      }
-    }, 30); // 30ms interval for smooth 60fps-like motion
+    let animationFrameId;
+    const scrollSpeed = 0.5; // Pixels per frame (slow and smooth)
 
-    return () => clearInterval(interval);
+    const animate = () => {
+      if (carousel && !isHovering) {
+        // Increment scroll position
+        carousel.scrollLeft += scrollSpeed;
+
+        // Calculate the midpoint where we reset (halfway through duplicated content)
+        const resetPoint = (scrollWidth - clientWidth) / 2;
+
+        // Reset to start when reaching the midpoint for seamless loop
+        if (carousel.scrollLeft >= resetPoint) {
+          carousel.scrollLeft = 0;
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, [featuredProducts, isHovering]);
 
   if (loading) {
@@ -268,13 +284,14 @@ const Home = () => {
                       style={{ scrollBehavior: 'auto' }}
                     >
                       <div className="flex gap-6 pb-2">
+                        {/* Render featured products twice for infinite loop */}
                         {featuredProducts.map((product) => (
                           <div key={`featured-${product.id}`} className="flex-shrink-0 w-[280px]">
                             <ProductCard product={product} />
                           </div>
                         ))}
-                        {/* Duplicate first few items for seamless loop */}
-                        {featuredProducts.slice(0, 3).map((product, idx) => (
+                        {/* Duplicate all items for seamless infinite scroll */}
+                        {featuredProducts.map((product, idx) => (
                           <div key={`featured-duplicate-${product.id}-${idx}`} className="flex-shrink-0 w-[280px]">
                             <ProductCard product={product} />
                           </div>
