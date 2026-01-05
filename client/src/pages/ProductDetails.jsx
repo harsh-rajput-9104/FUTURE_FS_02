@@ -49,7 +49,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4">
+    <div className="max-w-7xl mx-auto px-4 py-8">
       <button 
         onClick={() => navigate(-1)}
         className="flex items-center gap-2 text-text-secondary hover:text-gold mb-8 transition-all duration-200 group"

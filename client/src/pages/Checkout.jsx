@@ -48,33 +48,35 @@ const Checkout = () => {
 
   if (orderComplete) {
     return (
-      <div className="max-w-2xl mx-auto text-center py-24">
-        <div className="flex justify-center mb-8">
-          <div className="relative">
-            <CheckCircle className="text-gold w-24 h-24" />
-            <div className="absolute inset-0 blur-2xl bg-gold/30 animate-pulse"></div>
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="max-w-2xl mx-auto text-center py-24">
+          <div className="flex justify-center mb-8">
+            <div className="relative">
+              <CheckCircle className="text-gold w-24 h-24" />
+              <div className="absolute inset-0 blur-2xl bg-gold/30 animate-pulse"></div>
+            </div>
           </div>
+          <h1 className="text-4xl font-bold text-white mb-6">Thank You for Your Order!</h1>
+          <p className="text-text-secondary mb-10 text-base leading-relaxed">
+            Your order has been placed successfully. We've sent a confirmation email to {formData.email}.
+          </p>
+          <div className="glass-card-premium p-7 rounded-2xl max-w-md mx-auto mb-10 border border-white/10 depth-gradient">
+            <p className="text-sm text-text-secondary mb-3">Order ID</p>
+            <p className="text-xl font-mono font-bold text-gold">{orderId}</p>
+          </div>
+          <button 
+            onClick={() => navigate('/')}
+            className="px-12 py-4 gradient-primary text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-primary/50 transition-all duration-200 text-base btn-premium"
+          >
+            Continue Shopping
+          </button>
         </div>
-        <h1 className="text-4xl font-bold text-white mb-6">Thank You for Your Order!</h1>
-        <p className="text-text-secondary mb-10 text-base leading-relaxed">
-          Your order has been placed successfully. We've sent a confirmation email to {formData.email}.
-        </p>
-        <div className="glass-card-premium p-7 rounded-2xl max-w-md mx-auto mb-10 border border-white/10 depth-gradient">
-          <p className="text-sm text-text-secondary mb-3">Order ID</p>
-          <p className="text-xl font-mono font-bold text-gold">{orderId}</p>
-        </div>
-        <button 
-          onClick={() => navigate('/')}
-          className="px-12 py-4 gradient-primary text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-primary/50 transition-all duration-200 text-base btn-premium"
-        >
-          Continue Shopping
-        </button>
       </div>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4">
+    <div className="max-w-7xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-white mb-10">Checkout</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

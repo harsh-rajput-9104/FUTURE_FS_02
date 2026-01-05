@@ -178,7 +178,7 @@ const Home = () => {
   return (
     <div className="flex min-h-screen">
       {/* Desktop Sidebar - Left Navigation Rail */}
-      <aside className="hidden lg:block w-64 glass border-r border-white/10 flex-shrink-0 sticky top-[72px] self-start h-[calc(100vh-72px)] overflow-y-auto">
+      <aside className="hidden lg:block w-64 glass border-r border-white/10 flex-shrink-0 sticky top-[72px] self-start h-[calc(100vh-72px)] overflow-y-auto z-40">
         <CategorySidebar
           selectedCategory={selectedCategory}
           categoryCounts={categoryCounts}
@@ -195,7 +195,7 @@ const Home = () => {
             className="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity"
             onClick={() => setIsMobileSidebarOpen(false)}
           />
-          <div className="relative w-80 glass-strong h-full shadow-2xl transform transition-transform overflow-y-auto border-r border-white/20">
+          <div className="relative w-80 glass-strong h-full shadow-2xl transform transition-transform overflow-y-auto border-r border-white/20 z-50">
             <div className="p-6 flex justify-between items-center border-b border-white/10">
               <h2 className="text-xl font-bold text-white">Filters</h2>
               <button 
@@ -221,7 +221,7 @@ const Home = () => {
       {/* Main Content */}
       <main className="flex-1 w-full min-w-0">
         {/* Filters & Search Header - sticky to top of page */}
-        <div className="glass-strong border-b border-white/10 sticky top-[72px] z-40 backdrop-blur-xl bg-[rgba(10,10,15,0.98)] shadow-lg">
+        <div className="glass-strong border-b border-white/10 sticky top-[72px] z-50 backdrop-blur-xl bg-[rgba(10,10,15,0.98)] shadow-lg">
           <div className="px-8 py-5 flex flex-col md:flex-row gap-4 items-center justify-between">
           
           {/* Mobile Filter Toggle */}
@@ -262,7 +262,7 @@ const Home = () => {
       </div>
 
         {/* Main Content Area - natural page scroll */}
-        <div className="px-8 py-10">
+        <div className="px-8 py-10 pt-[100px]">
           {isHomeView ? (
               <div className="space-y-20">
                 {/* Featured Carousel Section */}
@@ -280,7 +280,7 @@ const Home = () => {
                       ref={carouselRef}
                       onMouseEnter={() => setIsHovering(true)}
                       onMouseLeave={() => setIsHovering(false)}
-                      className="relative overflow-x-auto rounded-2xl glass-card-premium border border-white/10 p-6 scrollbar-hide"
+                      className="relative overflow-x-auto rounded-2xl glass-card-premium border border-white/10 p-6 scrollbar-hide z-10"
                       style={{ scrollBehavior: 'auto' }}
                     >
                       <div className="flex gap-6 pb-2">

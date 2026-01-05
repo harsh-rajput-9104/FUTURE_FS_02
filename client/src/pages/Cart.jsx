@@ -13,21 +13,23 @@ const Cart = () => {
 
   if (cart.length === 0) {
     return (
-      <div className="text-center py-24">
-        <h2 className="text-2xl font-bold text-white mb-4">Your cart is empty</h2>
-        <p className="text-text-secondary mb-8 text-sm">Looks like you haven't added anything to your cart yet.</p>
-        <Link 
-          to="/"
-          className="inline-flex items-center justify-center px-8 py-4 gradient-primary text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-primary/50 transition-all duration-200 btn-premium"
-        >
-          Start Shopping
-        </Link>
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="text-center py-24">
+          <h2 className="text-2xl font-bold text-white mb-4">Your cart is empty</h2>
+          <p className="text-text-secondary mb-8 text-sm">Looks like you haven't added anything to your cart yet.</p>
+          <Link 
+            to="/"
+            className="inline-flex items-center justify-center px-8 py-4 gradient-primary text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-primary/50 transition-all duration-200 btn-premium"
+          >
+            Start Shopping
+          </Link>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4">
+    <div className="max-w-7xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-white mb-10">Shopping Cart</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-7">
