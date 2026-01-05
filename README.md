@@ -1,4 +1,4 @@
-# Mini E-Commerce Storefront
+# ZWYNTRA : Mini E-Commerce Storefront
 
 A fully functional, responsive, and production-ready Mini E-Commerce application with a premium futuristic UI, built with modern React practices and optimized for performance.
 
