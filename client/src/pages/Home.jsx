@@ -4,11 +4,11 @@ import ProductCard from '../components/ProductCard';
 import { Search, SlidersHorizontal, Star, ArrowRight, X, Menu, Sparkles } from 'lucide-react';
 
 const CategorySidebar = memo(({ selectedCategory, categoryCounts, categories, onSelect, isMobile = false }) => (
-  <div className={`${isMobile ? 'glass-card' : 'glass border-r border-white/10'} h-full flex flex-col`}>
-    <h3 className={`font-semibold text-white ${isMobile ? 'text-base mb-4 px-2' : 'text-xs uppercase tracking-wider px-6 py-6 border-b border-white/10'}`}>
+  <div className={`${isMobile ? 'glass-card' : 'glass border-r border-white/10 sidebar-scroll'} h-full flex flex-col`}>
+<h3 className={`font-semibold text-white ${isMobile ? 'text-lg mb-4 px-2' : 'text-m uppercase tracking-wider px-6 py-6 border-b border-white/10'}`}>
       {isMobile ? 'Categories' : '✨ Filters'}
     </h3>
-    <div className={`space-y-1.5 overflow-y-auto flex-1 ${isMobile ? 'p-4' : 'p-3'}`}>
+    <div className={`space-y-4 overflow-y-auto flex-1 ${isMobile ? 'p-4' : 'p-3'}`}>
       <button
         onClick={() => onSelect('all')}
         className={`w-full text-left transition-all duration-200 flex justify-between items-center group rounded-xl ${
@@ -19,11 +19,11 @@ const CategorySidebar = memo(({ selectedCategory, categoryCounts, categories, on
             : 'text-text-secondary hover:glass hover:text-white border border-transparent'
         }`}
       >
-        <span className={`${isMobile ? 'font-medium' : 'text-xs font-medium'} flex items-center gap-2`}>
+        <span className={`${isMobile ? 'font-medium' : 'text-m font-medium'} flex items-center gap-2`}>
           <Sparkles size={16} className={selectedCategory === 'all' ? 'text-gold' : 'text-text-muted'} />
           All Products
         </span>
-        <span className={`text-xs font-semibold ${
+        <span className={`text-sm font-semibold ${
           selectedCategory === 'all' ? 'text-gold' : 'text-text-muted'
         }`}>
           {categoryCounts.all || 0}
@@ -41,8 +41,8 @@ const CategorySidebar = memo(({ selectedCategory, categoryCounts, categories, on
               : 'text-text-secondary hover:glass hover:text-white border border-transparent'
           }`}
         >
-          <span className={`${isMobile ? 'font-medium' : 'text-xs font-medium'}`}>{cat}</span>
-          <span className={`text-xs font-semibold ${
+        <span className={`${isMobile ? 'text-sm font-sm' : 'text-m font-medium'}`}>{cat}</span>
+          <span className={`text-m font-semibold ${
             selectedCategory === cat ? 'text-gold' : 'text-text-muted'
           }`}>
             {categoryCounts[cat] || 0}
@@ -176,9 +176,15 @@ const Home = () => {
   }
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen w-full">
       {/* Desktop Sidebar - Left Navigation Rail */}
-      <aside className="hidden lg:block w-64 glass border-r border-white/10 flex-shrink-0 sticky top-[72px] self-start h-[calc(100vh-72px)] overflow-y-auto">
+      <aside 
+      className="hidden lg:flex flex-col glass border-r border-white/10 flex-shrink-0 sticky top-[72px] h-[calc(100vh-72px)]"
+       style={{ width: 'var(--sidebar-width)', 
+           height: 'calc(100vh - var(--navbar-height))'
+          }}
+     >
+  <div className="flex-1 overflow-y-auto">
         <CategorySidebar
           selectedCategory={selectedCategory}
           categoryCounts={categoryCounts}
@@ -186,6 +192,7 @@ const Home = () => {
           onSelect={handleCategorySelect}
           isMobile={false}
         />
+  </div>
       </aside>
 
       {/* Mobile Sidebar Drawer */}
@@ -221,7 +228,7 @@ const Home = () => {
       {/* Main Content */}
       <main className="flex-1 w-full min-w-0">
         {/* Filters & Search Header - sticky to top of page */}
-        <div className="glass-strong border-b border-white/10 sticky top-[72px] z-40 backdrop-blur-xl bg-[rgba(10,10,15,1)] shadow-lg">
+        <div className="glass-strong border-b border-white/10 sticky top-[72px] z-40 backdrop-blur-xl bg-[linear-gradient(180deg,rgba(15,19,36,0.95),rgba(18,23,42,0.95))] shadow-lg">
           <div className="px-8 py-5 flex flex-col md:flex-row gap-4 items-center justify-between">
           
           {/* Mobile Filter Toggle */}
@@ -234,12 +241,12 @@ const Home = () => {
           </button>
 
           {/* Search - Takes left priority */}
-          <div className="relative w-full md:flex-1 lg:w-1/3">
+          <div className="relative w-full md:flex-1 lg:w-1/3 search-bar-wrapper">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" size={20} />
             <input
               type="text"
               placeholder="Search products..."
-              className="w-full pl-12 pr-4 py-3.5 glass-card border border-white/20 rounded-xl bg-transparent text-white placeholder-text-muted focus:outline-none focus:border-gold-muted focus:shadow-lg focus:shadow-gold/10 transition-all duration-200"
+              className="search-input w-full pl-12 pr-4 rounded-xl text-white placeholder-text-muted focus:outline-none transition-all duration-200"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -249,7 +256,7 @@ const Home = () => {
           <div className="relative w-full md:w-auto min-w-[220px]">
             <SlidersHorizontal className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" size={18} />
             <select
-              className="w-full pl-12 pr-4 py-3.5 glass-card border border-white/20 rounded-xl appearance-none bg-transparent text-white cursor-pointer font-medium focus:outline-none focus:border-gold-muted focus:shadow-lg focus:shadow-gold/10 transition-all duration-200"
+              className="sort-select w-full"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
             >

@@ -31,7 +31,7 @@ const ProductCard = ({ product }) => {
         </div>
         
         <Link to={`/product/${product.id}`} className="block mb-4 flex-grow">
-          <h3 className="text-sm font-semibold text-white line-clamp-2 group-hover:text-accent transition-colors duration-200 leading-snug" title={product.title}>
+          <h3 className="text-m font-semibold text-white line-clamp-2 group-hover:text-accent transition-colors duration-200 leading-snug" title={product.title}>
             {product.title}
           </h3>
         </Link>
